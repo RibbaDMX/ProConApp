@@ -56,38 +56,40 @@ function App() {
 
   return (
     <Authenticator>
-      <div className="App">
-        <h1>My Notes App</h1>
-        <input
-          onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-          placeholder="Note name"
-          value={formData.name}
-        />
-        <input
-          onChange={e => setFormData({ ...formData, 'description': e.target.value})}
-          placeholder="Note description"
-          value={formData.description}
-        />
-        <input
-          type="file"
-          onChange={onChange}
-        />
-        <button onClick={createNote}>Create Note</button>
-        <div style={{marginBottom: 30}}>
-        {
-          notes.map(note => (
-            <div key={note.id || note.name}>
-              <h2>{note.name}</h2>
-              <p>{note.description}</p>
-              <button onClick={() => deleteNote(note)}>Delete note</button>
-              {
-                note.image && <img src={note.image} style={{width: 400}} />
-              }
-            </div>
-          ))
-        }
+      {({ signOut, user }) => (
+        <div className="App">
+          <h1>My Notes App</h1>
+          <input
+            onChange={e => setFormData({ ...formData, 'name': e.target.value})}
+            placeholder="Note name"
+            value={formData.name}
+          />
+          <input
+            onChange={e => setFormData({ ...formData, 'description': e.target.value})}
+            placeholder="Note description"
+            value={formData.description}
+          />
+          <input
+            type="file"
+            onChange={onChange}
+          />
+          <button onClick={createNote}>Create Note</button>
+          <div style={{marginBottom: 30}}>
+          {
+            notes.map(note => (
+              <div key={note.id || note.name}>
+                <h2>{note.name}</h2>
+                <p>{note.description}</p>
+                <button onClick={() => deleteNote(note)}>Delete note</button>
+                {
+                  note.image && <img src={note.image} style={{width: 400}} />
+                }
+              </div>
+            ))
+          }
+          </div>
         </div>
-      </div>
+      )};
     </Authenticator>
   );
 }
