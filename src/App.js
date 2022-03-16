@@ -89,7 +89,7 @@ function App() {
           }
           </div>
         </div>
-      )};
+      )}
     </Authenticator>
   );
 }
